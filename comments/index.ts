@@ -1,9 +1,12 @@
 import express from "express";
 import { randomBytes } from 'crypto';
+import cors from 'cors';
 
 const app = express();
 const port = 4001;
+
 app.use(express.json());
+app.use(cors());
 
 const commentsByPostId: any = {};
 
