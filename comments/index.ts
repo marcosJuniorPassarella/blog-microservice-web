@@ -5,14 +5,20 @@ const app = express();
 const port = 4001;
 app.use(express.json());
 
-const commentsByPostId = {};
+const commentsByPostId: any = {};
 
 app.get('/posts/:id/comments', (req, res) => {
     //res.send(commentsByPostId)
 });
 
 app.post('/posts/:id/comments', (req, res) => {
-    //res.send(commentsByPostId)
+    const commentId = randomBytes(4).toString('hex');
+    const { content } = req.body;
+
+    const comments = commentsByPostId[req.params.id] || [];
+    comments.push({ id: commentId, content });
+    commentsByPostId[req.params.id] = comments;
+    res.status(201).send(comments);
 });
 
 app.listen(port, () => {
