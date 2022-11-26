@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Microservices } from "./models/enums/Microservices";
 
 export default function PostList() {
+  const [posts, setPosts] = useState({});
+
+  async function fecthPosts() {
+    const res = await axios.get(`${Microservices.urlPostsMicroservice}/posts`);
+    res.data && setPosts(res.data);
+  }
+
+  useEffect(() => {
+    fecthPosts();
+  }, []);
+
+  const renderedPosts = Object.values(posts).map((post: any) => {
+    return (
+      <div
+        className="card"
+        style={{ width: "30%", marginBottom: "20px" }}
+        key={post?.id}
+      >
+        <div className="card-body">
+          <h3>{post?.title}</h3>
+        </div>
+      </div>
+    );
+  });
+
+  console.log(posts);
+
   return (
-    <div className="">
-      <h1>Hello Post List</h1>
+    <div className="d-flex flex-row flex-wrap justify-content-between">
+      {renderedPosts}
     </div>
   );
 }
