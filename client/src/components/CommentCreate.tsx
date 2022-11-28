@@ -6,14 +6,17 @@ interface CommentCreateProps {
   postId: string;
 }
 
-export function CommentCreate(postId: any) {
+export function CommentCreate({ postId }: CommentCreateProps) {
   const [content, setContent] = useState("");
 
   async function onSubmitForm(event: any) {
     event.preventDefault();
-    await axios.post(`http://localhost:4001/posts/${postId}/comments`, {
-      content,
-    });
+    await axios.post(
+      `${Microservices.urlCommentsMicroservice}/posts/${postId}/comments`,
+      {
+        content,
+      }
+    );
     setContent("");
   }
 
