@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Microservices } from "./models/enums/Microservices";
 import { CommentCreate } from "./components/CommentCreate";
+import { CommentList } from "./components/CommentList";
 
 export default function PostList() {
   const [posts, setPosts] = useState({});
@@ -24,6 +25,7 @@ export default function PostList() {
       >
         <div className="card-body">
           <h3>{post?.title}</h3>
+          <CommentList postId={post?.id} />
           <CommentCreate postId={post?.id} />
         </div>
       </div>
