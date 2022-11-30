@@ -7,7 +7,7 @@ const app = express();
 const port = 4005;
 app.use(express.json());
 app.use(cors());
-app.listen(port, () => console.log(`Server runing on ${Microservices.urlEventBusMicroservice} port 🚀`));
+app.listen(port, () => console.log(`Server runing on http://localhost:4005 🚀`));
 
 app.post('/events', (req, res) => {
     const event = req.body;
