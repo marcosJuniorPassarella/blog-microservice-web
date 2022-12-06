@@ -33,6 +33,11 @@ app.post('/posts/:id/comments', async (req, res) => {
     res.status(201).send(comments);
 });
 
+app.post('/events', (req, res) => {
+    console.log('Received Event', req.body?.type);
+    res.send({});
+})
+
 app.listen(port, () => {
     console.log(`🚀 Server runing on http://localhost:${port}`);
 });

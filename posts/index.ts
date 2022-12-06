@@ -33,6 +33,11 @@ app.post('/posts', async (req, res) => {
     res.status(201).send(posts[id]);
 });
 
+app.post('/events', (req, res) => {
+    console.log('Received Event', req.body?.type);
+    res.send({});
+})
+
 app.listen(port, () => {
     console.log(`🚀 Server runing on http://localhost:${port}`);
 });
